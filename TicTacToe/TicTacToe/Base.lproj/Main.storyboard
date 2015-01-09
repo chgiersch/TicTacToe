@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="O5R-Qt-bcq">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <scenes>
+        <!--Tic Tac Toe-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="RootViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DX1-IE-dlT">
+                                <rect key="frame" x="143" y="269" width="34" height="30"/>
+                                <state key="normal" title="Play!">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="B65-bC-Et3" kind="push" id="mVd-kD-dfb"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Who do you want to play as?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9TV-YH-Jpw">
+                                <rect key="frame" x="48" y="127" width="224" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="tue-hm-aU8">
+                                <rect key="frame" x="88" y="156" width="145" height="29"/>
+                                <segments>
+                                    <segment title="X"/>
+                                    <segment title="O"/>
+                                </segments>
+                                <connections>
+                                    <action selector="onSegmentPressed:" destination="vXZ-lx-hvc" eventType="valueChanged" id="RSq-zZ-94j"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="DX1-IE-dlT" secondAttribute="centerY" id="ZKe-TG-QZt"/>
+                            <constraint firstAttribute="centerX" secondItem="DX1-IE-dlT" secondAttribute="centerX" id="xph-Ne-6lt"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Tic Tac Toe" id="J1x-4z-BRb"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="713" y="406"/>
+        </scene>
+        <!--Play View Controller-->
+        <scene sceneID="8ba-mL-f5O">
+            <objects>
+                <viewController id="B65-bC-Et3" customClass="PlayViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="45X-f1-wbt"/>
+                        <viewControllerLayoutGuide type="bottom" id="d9w-Ln-KV7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aNv-a0-dzu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="X" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3qt-lH-tlZ">
+                                <rect key="frame" x="246" y="86" width="26" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Who's turn is it you ask?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fy8-fi-6Ub">
+                                <rect key="frame" x="49" y="86" width="189" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="blank" translatesAutoresizingMaskIntoConstraints="NO" id="zoG-La-Ikq">
+                                <rect key="frame" x="5" y="267" width="100" height="100"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" tag="5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="blank" translatesAutoresizingMaskIntoConstraints="NO" id="USv-eU-ZTs">
+                                <rect key="frame" x="110" y="267" width="100" height="100"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" tag="6" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="blank" translatesAutoresizingMaskIntoConstraints="NO" id="vT4-f4-MMW">
+                                <rect key="frame" x="215" y="267" width="100" height="100"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="blank" translatesAutoresizingMaskIntoConstraints="NO" id="fPz-Nf-rqX">
+                                <rect key="frame" x="5" y="162" width="100" height="100"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="blank" translatesAutoresizingMaskIntoConstraints="NO" id="4QG-k4-iNp">
+                                <rect key="frame" x="110" y="162" width="100" height="100"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="blank" translatesAutoresizingMaskIntoConstraints="NO" id="uha-5V-kOU">
+                                <rect key="frame" x="215" y="162" width="100" height="100"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" tag="7" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="blank" translatesAutoresizingMaskIntoConstraints="NO" id="U8W-x3-SN1">
+                                <rect key="frame" x="5" y="372" width="100" height="100"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" tag="8" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="blank" translatesAutoresizingMaskIntoConstraints="NO" id="XhP-5l-j4u">
+                                <rect key="frame" x="110" y="372" width="100" height="100"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" tag="9" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="blank" translatesAutoresizingMaskIntoConstraints="NO" id="RQG-8E-iWS">
+                                <rect key="frame" x="215" y="372" width="100" height="100"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Player has WON!!!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qAy-iv-ISu">
+                                <rect key="frame" x="90" y="527" width="140" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0015315412296504633" green="0.81061921296296302" blue="0.081659698882910761" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="fHm-de-sqw" appends="YES" id="GKM-kg-q2N"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" id="r5Q-tY-EtJ"/>
+                    <connections>
+                        <outlet property="a1ImageView" destination="fPz-Nf-rqX" id="azH-Os-zuh"/>
+                        <outlet property="a2ImageView" destination="4QG-k4-iNp" id="qkh-ua-ZRE"/>
+                        <outlet property="a3ImageView" destination="uha-5V-kOU" id="aRL-uP-p5a"/>
+                        <outlet property="b1ImageView" destination="zoG-La-Ikq" id="ia8-uC-lqN"/>
+                        <outlet property="b2ImageView" destination="USv-eU-ZTs" id="YiP-wb-xba"/>
+                        <outlet property="b3ImageView" destination="vT4-f4-MMW" id="JMi-Ty-5pT"/>
+                        <outlet property="c1ImageView" destination="U8W-x3-SN1" id="pmr-XK-K7C"/>
+                        <outlet property="c2ImageView" destination="XhP-5l-j4u" id="nbx-k9-Jln"/>
+                        <outlet property="c3ImageView" destination="RQG-8E-iWS" id="GzX-Uj-DUK"/>
+                        <outlet property="gameOverLabel" destination="qAy-iv-ISu" id="hg1-14-J32"/>
+                        <outlet property="whichPlayerLabel" destination="3qt-lH-tlZ" id="7GE-Zk-UQL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8MN-QP-x7j" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="fHm-de-sqw">
+                    <connections>
+                        <action selector="onImageViewTapped:" destination="B65-bC-Et3" id="tdT-UJ-7bB"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1093" y="406"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Ihq-hU-3k4">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="O5R-Qt-bcq" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="420-o5-5Qe">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="1GT-yG-m9x"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fiu-th-d8Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="310" y="406"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="blank" width="219" height="230"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

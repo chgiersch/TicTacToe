@@ -8,7 +8,7 @@
 
 #import "PlayViewController.h"
 
-@interface PlayViewController ()
+@interface PlayViewController () <UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *a1ImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *a2ImageView;
@@ -22,8 +22,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *c2ImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *c3ImageView;
 
-@property (weak, nonatomic) IBOutlet UILabel *whichPlayerLabel;
 @property (weak, nonatomic) IBOutlet UILabel *gameOverLabel;
+@property (weak, nonatomic) IBOutlet UILabel *whichPlayerLabel;
 
 @property NSMutableSet *winningIndexCombinations;
 @property NSSet *win1;
@@ -35,10 +35,10 @@
 @property NSSet *win7;
 @property NSSet *win8;
 @property NSMutableSet *playerXSet;
-@property NSMutableSet *playerYSet;
+@property NSMutableSet *playerOSet;
 
 @property NSArray *imagesArray;
-@property BOOL isXPlayersTurn;
+@property NSString *startingPlayer;
 @property UIGestureRecognizer *gestureRecognizer;
 
 @end
@@ -50,23 +50,16 @@
 {
     [super viewDidLoad];
 
+    // Set current player label
+    [self setCurrentPlayerLabel];
+
     // Create set of all winning sets
     [self createWinningSets];
     // Create set to hold respective player move choices
     self.playerXSet = [[NSMutableSet alloc] init];
-    self.playerYSet = [[NSMutableSet alloc] init];
+    self.playerOSet = [[NSMutableSet alloc] init];
     // Create array of all ImageView objects
     self.imagesArray = [[NSArray alloc] initWithObjects:self.a1ImageView, self.a2ImageView, self.a3ImageView, self.b1ImageView, self.b2ImageView, self.b3ImageView, self.c1ImageView, self.c2ImageView, self.c3ImageView, nil];
-
-    // Set first player
-    if ([self isCurrentPlayerX]) {
-        self.isXPlayersTurn = TRUE;
-    }
-    else
-    {
-        self.isXPlayersTurn = FALSE;
-    }
-    [self setCurrentPlayerLabel];
 }
 
 
@@ -79,42 +72,90 @@
     // Get the image touched
     UIImageView *imageViewTouched = [self findImageViewUsingPoint:touchPoint];
 
-    if (imageViewTouched != nil && imageViewTouched.image == nil) {
+    if (imageViewTouched != nil && imageViewTouched.image == nil)
+    {
         // Change image to X or O
         imageViewTouched.image = [UIImage imageNamed:self.currentPlayer];
 
-        if (![self isCurrentPlayerX])
+        // Save player move
+        if ([self.currentPlayer isEqualToString:@"X"])
         {
             // Player X turn
             [self.playerXSet addObject: [NSString stringWithFormat:@"%ld", (long)imageViewTouched.tag]];
-            if([self hasPlayerWonGame:self.playerXSet])
-            {
-                self.gameOverLabel.text = @"Player X won!!!";
-                gesture.enabled = FALSE;
-            };
         }
         else
         {
             // Player Y turn
-            [self.playerYSet addObject: [NSString stringWithFormat:@"%ld", (long)imageViewTouched.tag]];
-            if([self hasPlayerWonGame:self.playerYSet])
-            {
-                self.gameOverLabel.text = @"Player O won!!!";
-                gesture.enabled = FALSE;
-            };
-            [self hasPlayerWonGame:self.playerYSet];
+            [self.playerOSet addObject: [NSString stringWithFormat:@"%ld", (long)imageViewTouched.tag]];
         }
-        [self switchCurrentPlayer];
 
+        // Check for win
+        if ([[self whoWon] isEqualToString:@"X"] || [[self whoWon] isEqualToString:@"O"])
+        {
+            [self endGame];
+            return;
+        }
         //Check for a tie
         [self checkFotTie];
 
-        
+        // Switch current player
+        [self switchCurrentPlayer];
     }
 }
-- (IBAction)onResetButtonPressed:(UIButton *)sender
-{
 
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+        [self resetGame];
+    }
+}
+
+- (void)endGame
+{
+    self.gestureRecognizer.enabled = FALSE;
+    self.gameOverLabel.text = [NSString stringWithFormat:@"Player %@ won!!!", self.currentPlayer];
+    self.whichPlayerLabel.text = [NSString stringWithFormat:@""];
+
+    UIAlertView *alertView = [UIAlertView new];
+    alertView.delegate = self;
+    alertView.title = [NSString stringWithFormat:@"%@ Wins!", self.currentPlayer];
+    [alertView addButtonWithTitle:@"Dismiss"];
+    [alertView addButtonWithTitle:@"Play Again"];
+    [alertView show];
+
+
+}
+
+- (NSString *)whoWon
+{
+    if ([self.currentPlayer isEqualToString:@"X"])
+    {
+        // Compare if players chosen plays matches any of the winning combinations        ***** winning combination 1,2,3 is broken *****
+        for (NSSet *winningSet in self.winningIndexCombinations)
+        {
+            NSLog(@"%@  %@", self.playerXSet, winningSet);
+            if ([winningSet isSubsetOfSet:self.playerXSet])
+            {
+                return self.currentPlayer;
+            }
+        }
+    }
+    else
+    {
+        for (NSSet *winningSet in self.winningIndexCombinations)
+        {
+            if ([winningSet isSubsetOfSet:self.playerOSet])
+            {
+                return self.currentPlayer;
+            }
+        }
+    }
+    return FALSE;
+}
+
+- (void)resetGame
+{
     // Clear board (clear all image views)
     for (UIImageView *imageView in self.imagesArray)
     {
@@ -124,7 +165,14 @@
     self.gestureRecognizer.enabled = TRUE;
     // Clear player sets
     [self.playerXSet removeAllObjects];
-    [self.playerYSet removeAllObjects];
+    [self.playerOSet removeAllObjects];
+    [self setCurrentPlayerLabel];
+    self.gameOverLabel.text = @"";
+}
+
+- (IBAction)onResetButtonPressed:(UIButton *)sender
+{
+    [self resetGame];
 }
 
 // Finds the imageView that was tapped
@@ -140,20 +188,6 @@
         }
     }
     return nil;
-}
-
-- (BOOL)hasPlayerWonGame:(NSSet *)playerSet
-{
-    // Compare if players chosen plays matches any of the winning combinations
-    for (NSSet *set in self.winningIndexCombinations)
-    {
-        if ([set isSubsetOfSet:playerSet])
-        {
-            return TRUE;
-            
-        }
-    }
-    return FALSE;
 }
 
 - (BOOL)isCurrentPlayerX
@@ -186,7 +220,7 @@
 - (void)checkFotTie
 {
     // Check for a tie
-    if (self.playerXSet.count == 5 || self.playerYSet.count == 5)
+    if (self.playerXSet.count == 5 || self.playerOSet.count == 5)
     {
         self.gameOverLabel.text = @"Its a TIE!";
     }

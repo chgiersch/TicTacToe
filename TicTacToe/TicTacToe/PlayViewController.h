@@ -10,4 +10,6 @@
 
 @interface PlayViewController : UIViewController
 
+@property NSString *currentPlayer;
+
 @end

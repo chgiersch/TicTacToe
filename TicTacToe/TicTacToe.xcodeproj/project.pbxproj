@@ -10,7 +10,7 @@
 		0F561C271A610B8A00B9E758 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F561C261A610B8A00B9E758 /* WebViewController.m */; };
 		0FC91DE81A5F3A7D00AFB3F3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FC91DE71A5F3A7D00AFB3F3 /* main.m */; };
 		0FC91DEB1A5F3A7D00AFB3F3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FC91DEA1A5F3A7D00AFB3F3 /* AppDelegate.m */; };
-		0FC91DEE1A5F3A7D00AFB3F3 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FC91DED1A5F3A7D00AFB3F3 /* RootViewController.m */; };
+		0FC91DEE1A5F3A7D00AFB3F3 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FC91DED1A5F3A7D00AFB3F3 /* HomeViewController.m */; };
 		0FC91DF11A5F3A7D00AFB3F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FC91DEF1A5F3A7D00AFB3F3 /* Main.storyboard */; };
 		0FC91DF31A5F3A7D00AFB3F3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FC91DF21A5F3A7D00AFB3F3 /* Images.xcassets */; };
 		0FC91DF61A5F3A7D00AFB3F3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FC91DF41A5F3A7D00AFB3F3 /* LaunchScreen.xib */; };
@@ -36,8 +36,8 @@
 		0FC91DE71A5F3A7D00AFB3F3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0FC91DE91A5F3A7D00AFB3F3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0FC91DEA1A5F3A7D00AFB3F3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		0FC91DEC1A5F3A7D00AFB3F3 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		0FC91DED1A5F3A7D00AFB3F3 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		0FC91DEC1A5F3A7D00AFB3F3 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		0FC91DED1A5F3A7D00AFB3F3 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		0FC91DF01A5F3A7D00AFB3F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0FC91DF21A5F3A7D00AFB3F3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0FC91DF51A5F3A7D00AFB3F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -89,8 +89,8 @@
 			children = (
 				0FC91DE91A5F3A7D00AFB3F3 /* AppDelegate.h */,
 				0FC91DEA1A5F3A7D00AFB3F3 /* AppDelegate.m */,
-				0FC91DEC1A5F3A7D00AFB3F3 /* RootViewController.h */,
-				0FC91DED1A5F3A7D00AFB3F3 /* RootViewController.m */,
+				0FC91DEC1A5F3A7D00AFB3F3 /* HomeViewController.h */,
+				0FC91DED1A5F3A7D00AFB3F3 /* HomeViewController.m */,
 				0FC91E0B1A5F3B8600AFB3F3 /* PlayViewController.h */,
 				0FC91E0C1A5F3B8600AFB3F3 /* PlayViewController.m */,
 				0F561C251A610B8A00B9E758 /* WebViewController.h */,
@@ -230,7 +230,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0FC91E0D1A5F3B8600AFB3F3 /* PlayViewController.m in Sources */,
-				0FC91DEE1A5F3A7D00AFB3F3 /* RootViewController.m in Sources */,
+				0FC91DEE1A5F3A7D00AFB3F3 /* HomeViewController.m in Sources */,
 				0FC91DEB1A5F3A7D00AFB3F3 /* AppDelegate.m in Sources */,
 				0FC91DE81A5F3A7D00AFB3F3 /* main.m in Sources */,
 				0F561C271A610B8A00B9E758 /* WebViewController.m in Sources */,

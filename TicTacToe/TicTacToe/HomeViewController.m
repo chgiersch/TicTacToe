@@ -6,22 +6,36 @@
 //  Copyright (c) 2015 ChrisGiersch. All rights reserved.
 //
 
-#import "RootViewController.h"
+#import "HomeViewController.h"
 #import "PlayViewController.h"
 
-@interface RootViewController ()
+@interface HomeViewController ()
 
-@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *xORoSegmentcontrol;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *numberOfPlayersSegmentControl;
+
 @property NSString *playerString;
+@property int numberOfPlayers;
 
 @end
 
-@implementation RootViewController
+@implementation HomeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.playerString = [self.segmentedControl titleForSegmentAtIndex:self.segmentedControl.selectedSegmentIndex];
+    self.numberOfPlayers = 2;
+    self.playerString = [self.xORoSegmentcontrol titleForSegmentAtIndex:self.xORoSegmentcontrol.selectedSegmentIndex];
     // Do any additional setup after loading the view, typically from a nib.
+}
+- (IBAction)onNumPlayersSegment:(UISegmentedControl *)sender
+{
+    if (sender.selectedSegmentIndex == 0) {
+        self.numberOfPlayers = 2;
+    }
+    else
+    {
+        self.numberOfPlayers = 1;
+    }
 }
 
 - (IBAction)onSegmentPressed:(UISegmentedControl *)sender
@@ -34,6 +48,7 @@
 {
     PlayViewController *playVC = segue.destinationViewController;
     playVC.currentPlayer = self.playerString;
+    playVC.numberOfPlayers = self.numberOfPlayers;
 }
 
 @end

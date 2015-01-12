@@ -11,5 +11,6 @@
 @interface PlayViewController : UIViewController
 
 @property NSString *currentPlayer;
+@property int numberOfPlayers;
 
 @end

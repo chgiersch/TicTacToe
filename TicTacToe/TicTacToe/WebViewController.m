@@ -20,7 +20,8 @@
 
 @implementation WebViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     //    self.webView.delegate = self;
     self.webView.scrollView.delegate = self;
@@ -35,7 +36,8 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    if (![textField.text hasPrefix:@"http://"]) {
+    if (![textField.text hasPrefix:@"http://"])
+    {
         NSString *httpString = @"http://";
         NSString *correctedString = [httpString stringByAppendingString:textField.text];
         [self loadWebPage:correctedString];
